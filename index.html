@@ -3,9 +3,22 @@
   <head>
     <title>TamaMonad</title>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Welcome to TamaMonad</h1>
-    <p>Your on-chain pet, powered by Multisynq + Monad Testnet!</p>
+    <div class="container">
+      <h1>TamaMonad</h1>
+      <p>Your on-chain pet powered by Monad + Multisynq</p>
+
+      <div class="pet">
+        <img src="https://i.imgur.com/sqQyJEv.gif" alt="Tama Pet" />
+        <p>Status: <span id="status">Happy 🎉</span></p>
+      </div>
+
+      <button onclick="feedPet()">Feed 🍗</button>
+      <button onclick="playPet()">Play 🎮</button>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
