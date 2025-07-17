@@ -1,0 +1,109 @@
+**Tamamonad Evo** game fix incoming! 🛠️✨
+
+Berikut ini gw fix dan update ulang struktur proyek lo di repo `Tamamonad-Evo`, termasuk `index.html`, script logika dasar, dan integrasi dummy ke Multisynq (biar game tetap jalan meski simulasi):
+
+---
+
+### ✅ Struktur File Final:
+
+```
+Tamamonad-Evo/
+├── index.html
+├── style.css
+├── script.js
+└── assets/
+    ├── egg.png
+    └── tamamonad.png
+```
+
+---
+
+### 📄 index.html
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tamamonad Evo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Tamamonad Evo</h1>
+  <canvas id="gameCanvas" width="300" height="300"></canvas>
+  <button id="feedButton">Feed</button>
+  <button id="playButton">Play</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
+```
+
+---
+
+### 🎨 style.css (minimalis)
+```css
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background: #f8f8ff;
+  padding: 2rem;
+}
+canvas {
+  border: 2px solid #333;
+  margin-bottom: 1rem;
+  background: #fff;
+}
+button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+```
+
+---
+
+### 🧠 script.js
+```js
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+let happiness = 50;
+let hunger = 50;
+
+function drawPet() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.beginPath();
+  ctx.arc(150, 150, 50, 0, Math.PI * 2);
+  ctx.fillStyle = '#00aced';
+  ctx.fill();
+  ctx.closePath();
+
+  ctx.fillStyle = '#000';
+  ctx.font = '14px Arial';
+  ctx.fillText(`Hunger: ${hunger}`, 10, 20);
+  ctx.fillText(`Happiness: ${happiness}`, 10, 40);
+}
+
+document.getElementById('feedButton').onclick = () => {
+  hunger = Math.max(0, hunger - 10);
+  drawPet();
+};
+
+document.getElementById('playButton').onclick = () => {
+  happiness = Math.min(100, happiness + 10);
+  drawPet();
+};
+
+// Dummy connect ke Multisynq
+function connectMultisynq() {
+  console.log("Connected to Multisynq (simulasi)");
+}
+
+connectMultisynq();
+drawPet();
+```
+
+---
+
+
