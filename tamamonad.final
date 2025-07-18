@@ -1,0 +1,69 @@
+import zipfile, os, shutil
+
+# Buat folder project baru
+project_path = "/mnt/data/tamamonad-evo-final"
+os.makedirs(project_path, exist_ok=True)
+
+# index.html
+index_html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TamaMonad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>TamaMonad</h1>
+    <p>Your on-chain pet powered by Monad + Multisynq</p>
+    <img id="pet" src="tamamon.png" alt="Tamamon">
+    <p id="status">Status: Happy 🎉</p>
+    <button onclick="feed()">Feed 🍗</button>
+    <button onclick="play()">Play 🎮</button>
+    <script src="script.js"></script>
+</body>
+</html>
+"""
+with open(os.path.join(project_path, "index.html"), "w") as f:
+    f.write(index_html)
+
+# style.css
+style_css = """body { text-align: center; font-family: Arial; margin-top: 50px; background: #f0f8ff; }
+h1 { color: #333; }
+img { width: 200px; margin: 20px; }
+button { margin: 10px; padding: 10px 20px; background: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }
+button:hover { background: #45a049; }
+"""
+with open(os.path.join(project_path, "style.css"), "w") as f:
+    f.write(style_css)
+
+# script.js
+script_js = """let statusEl = document.getElementById('status');
+
+function feed() {
+    statusEl.textContent = "Status: Full 🍖";
+}
+
+function play() {
+    statusEl.textContent = "Status: Excited 😆";
+}
+"""
+with open(os.path.join(project_path, "script.js"), "w") as f:
+    f.write(script_js)
+
+# Copy gambar tamamon
+source_img = "/mnt/data/A_pixel_art_digital_illustration_features_a_Tamago.png"
+dest_img = os.path.join(project_path, "tamamon.png")
+if os.path.exists(source_img):
+    shutil.copy(source_img, dest_img)
+
+# Buat ZIP
+zip_path = "/mnt/data/tamamonad-evo-final.zip"
+with zipfile.ZipFile(zip_path, 'w') as zipf:
+    for foldername, subfolders, filenames in os.walk(project_path):
+        for filename in filenames:
+            filepath = os.path.join(foldername, filename)
+            arcname = os.path.relpath(filepath, project_path)
+            zipf.write(filepath, arcname)
+
+zip_path
