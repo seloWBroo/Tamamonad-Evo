@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamamonad Evo</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #f0f0f0; padding: 20px; }
+        h1 { color: #333; }
+        img { width: 200px; margin: 20px auto; display: block; }
+        button { margin: 10px; padding: 10px 20px; background: #4caf50; color: white; border: none; border-radius: 8px; }
+        button:hover { background: #45a049; cursor: pointer; }
+        #status { font-size: 1.2em; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Tamamonad Evo</h1>
+    <img id="tama" src="tamamon.png" alt="Tamamon">
+    <p>Status: <span id="status">Happy 🎉</span></p>
+    <button id="feedBtn">Feed 🍗</button>
+    <button id="playBtn">Play 🎮</button>
+
+    <script>
+        const statusEl = document.getElementById('status');
+        document.getElementById('feedBtn').addEventListener('click', () => {
+            statusEl.textContent = "Full 😋";
+            setTimeout(() => statusEl.textContent = "Happy 🎉", 2000);
+        });
+        document.getElementById('playBtn').addEventListener('click', () => {
+            statusEl.textContent = "Excited 🤩";
+            setTimeout(() => statusEl.textContent = "Happy 🎉", 2000);
+        });
+    </script>
+</body>
+</html>
